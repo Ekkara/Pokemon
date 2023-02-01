@@ -28,13 +28,9 @@ export class PokemonService {
       error: (error: HttpErrorResponse) => {
         console.log(error.message)
       }
-    })    
+    }) 
+    console.log(this.names);
   }
-  public babben(): void {
-      this.fetchPokemons(20);
-      console.log(this.names);
-  }
-
 }
 export interface PokemonResponse{
   results: Result[]

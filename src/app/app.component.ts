@@ -8,15 +8,10 @@ import { PokemonService } from './services/pokemon.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   constructor(
     private readonly pokemonService:PokemonService){}
 
   title = 'ng-pokemon';
-
-  ngOnInit(): void {
-
-    this.pokemonService.babben();
-  }  
 }
