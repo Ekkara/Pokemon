@@ -10,6 +10,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     TrainerPage,
     PokemonCataloguePage,
     LoginFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    LogoutButtonComponent
   ],
   imports: [
     BrowserModule,
