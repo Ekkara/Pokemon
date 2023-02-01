@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginPage } from './pages/login/login.page';
 import { TrainerPage } from './pages/trainer/trainer.page';
 import { PokemonCataloguePage } from './pages/pokemon-catalogue/pokemon-catalogue.page';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PokemonCataloguePage } from './pages/pokemon-catalogue/pokemon-catalogu
     PokemonCataloguePage
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
