@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     LoginPage,
     TrainerPage,
     PokemonCataloguePage,
-    LoginFormComponent
+    LoginFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
