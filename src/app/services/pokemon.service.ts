@@ -8,39 +8,39 @@ import { Pokemon } from '../components/pokemon/Pokemon';
 })
 export class PokemonService {
   constructor(private readonly http: HttpClient) {}
-
-  private readonly _pokemons$: BehaviorSubject<string[]> = new BehaviorSubject<
-    string[]
-  >([]);
-  //https://pokeapi.co/api/v2/pokemon/pikachu
-  
-  readonly amount:number = 10;
+ 
+  readonly interval:number = 10;
+  private names:string[] = [];
 
   public fetchPokemons(offset: number): void {
-    this.http.get<string[]>(`https://pokeapi.co/api/v2/pokemon?limit=${this.amount}&offset=${offset}`)
+    this.http.get<PokemonResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${offset}`)
     .pipe(
-      map((response: string[]) => {
-        return response;
+      map((response: PokemonResponse) => {
+        return response.results;
       })
     )
     .subscribe({
-      next: (jokes: string[]) => {
-        this._pokemons$.next(jokes)
+      next: (pokemon: Result[]) => {
+        pokemon.forEach(p=>{
+          this.names.push(p.name);
+        })
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message)
       }
     })    
   }
-
   public babben(): void {
       this.fetchPokemons(20);
-      console.log(this._pokemons$)
+      console.log(this.names);
   }
 
 }
-
-export interface Pokemons{
-  pokemon: Pokemon[]
+export interface PokemonResponse{
+  results: Result[]
+}
+export interface Result{
+  name: string,
+  url:string
 }
 
