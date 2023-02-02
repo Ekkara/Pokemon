@@ -12,6 +12,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { TrainerListComponent } from './components/trainer-list/trainer-list.component';
+import { TrainerListItemComponent } from './components/trainer-list-item/trainer-list-item.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     PokemonCataloguePage,
     LoginFormComponent,
     NavbarComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    TrainerListComponent,
+    TrainerListItemComponent
   ],
   imports: [
     BrowserModule,
