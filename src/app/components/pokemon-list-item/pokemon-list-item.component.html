@@ -1,10 +1,22 @@
 <li *ngIf="pokemon" class="mb-4 shadow bg-white rounded relative">
-    <section>
-    
-    </section>
-    <section>
-      <span>{{ pokemon.name }} of type: [insert type] </span>
-    <button>more information</button>    
-    </section>
-  </li>
-  
+  <section></section>
+  <section>
+    <span>{{ pokemon.name }} </span>
+    <ng-container *ngIf="showDetails; then lessInfo; else moreInfo">
+    </ng-container>
+
+    <ng-template #moreInfo>
+      <button (click)="getDetails()">(more information)</button>
+    </ng-template>
+    <ng-template #lessInfo>
+      <button (click)="getDetails()">(hide information)</button>
+    </ng-template>
+
+    <ng-template [ngIf]="showDetails">
+      <span> id: {{ pokemon.details?.id }} </span>
+      <span> height: {{ pokemon.details?.height }} </span>
+      <span> weight: {{ pokemon.details?.weight }} </span>
+      <span> base experience: {{ pokemon.details?.base_experience }} </span>
+    </ng-template>
+  </section>
+</li>
