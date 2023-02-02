@@ -16,9 +16,8 @@ export class PokemonCataloguePage implements OnInit{
   }
 
   ngOnInit(): void {
-    //initiate first fetch NB fetch every time visiting the page, 
-    //TODO: avoid that!
-
+    //initiate first fetch 
+    if(this.pokemons.length !== 0) return
     this.pokemonService.fetchPokemons();
   }
 }

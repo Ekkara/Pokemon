@@ -19,6 +19,7 @@ export class PokemonService {
   }
 
   public fetchPokemons():void {
+    
     //this.names = [];
     this.http.get<PokemonResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${this._pokemons.length}`)
     .pipe(
