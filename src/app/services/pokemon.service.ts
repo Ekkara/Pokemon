@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, map } from 'rxjs';
 import { Pokemon } from '../components/pokemon/Pokemon';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,8 +13,14 @@ export class PokemonService {
   readonly interval:number = 10;
   private names:string[] = [];
 
-  public fetchPokemons(offset: number): void {
-    this.http.get<PokemonResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${offset}`)
+  private _pokemons:Pokemon[] = [];
+  public get pokemons(): Pokemon[]{
+    return this._pokemons;
+  }
+
+  public fetchPokemons():void {
+    //this.names = [];
+    this.http.get<PokemonResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${this._pokemons.length}`)
     .pipe(
       map((response: PokemonResponse) => {
         return response.results;
@@ -22,21 +29,28 @@ export class PokemonService {
     .subscribe({
       next: (pokemon: Result[]) => {
         pokemon.forEach(p=>{
-          this.names.push(p.name);
+         //old way
+          //currentArr.push(p);
+          
+          //new way
+         let nPokemon:Pokemon = {
+          name: p.name,
+          details: null
+         }
+         this._pokemons.push(nPokemon);
         })
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message)
       }
     }) 
-    console.log(this.names);
   }
 }
-export interface PokemonResponse{
-  results: Result[]
-}
-export interface Result{
-  name: string,
-  url:string
-}
-
+  //base, used to fetch all pokemons quickly
+  interface PokemonResponse {
+    results: Result[];
+  }
+   interface Result {
+    name: string;
+    url: string;
+  }
