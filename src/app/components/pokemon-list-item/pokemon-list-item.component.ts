@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Pokemon } from '../pokemon/Pokemon';
 
+
 @Component({
   selector: 'app-pokemon-list-item',
   templateUrl: './pokemon-list-item.component.html',

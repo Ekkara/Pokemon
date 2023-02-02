@@ -1,4 +1,11 @@
 <ul>
-    <app-pokemon-list-item *ngFor="let pokemon of pokemons"
-    [pokemon]="pokemon"></app-pokemon-list-item>
+  <app-pokemon-list-item
+    *ngFor="let pokemon of pokemons"
+    [pokemon]="pokemon"
+  ></app-pokemon-list-item>
 </ul>
+<button (click)="ShowMorePokemons()">Load more pokemons!</button>
+
+<ng-template [ngIf] ="onlyFirstSet">
+  <button (click)="ShowLessPokemons()">Hide some pokemons!</button>
+</ng-template>

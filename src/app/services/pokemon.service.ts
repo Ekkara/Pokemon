@@ -18,8 +18,12 @@ export class PokemonService {
     return this._pokemons;
   }
 
+  public get onlyFirstSet():boolean{
+    return (this._pokemons.length > this.interval);
+  }
+
   public fetchPokemons():void {
-    
+
     //this.names = [];
     this.http.get<PokemonResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${this._pokemons.length}`)
     .pipe(
@@ -46,7 +50,14 @@ export class PokemonService {
       }
     }) 
   }
+
+  public hidePokemons():void{
+  for(let i = 0; i < this.interval; i++){
+    this._pokemons.pop();
+  }
+  }
 }
+
   //base, used to fetch all pokemons quickly
   interface PokemonResponse {
     results: Result[];
