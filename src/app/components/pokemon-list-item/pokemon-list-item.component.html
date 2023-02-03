@@ -1,6 +1,7 @@
 <li *ngIf="pokemon" class="mb-4 shadow bg-white rounded relative">
   <section></section>
   <section>
+    <app-unfavorite-button [pokemon]="pokemon.details.id" ></app-unfavorite-button>
     <span>{{ pokemon.name }} </span>
     <ng-container *ngIf="showDetails; then lessInfo; else moreInfo">
     </ng-container>

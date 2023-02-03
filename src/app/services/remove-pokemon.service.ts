@@ -22,19 +22,24 @@ export class RemovePokemonService {
     private readonly trainerService: TrainerService
     ) { }
 
-    public removeFavorite(id: string): Observable<any>{
+   
+    public removeFavorite(id:string): Observable<any>{
       if (!this.trainerService.trainer){
         throw new Error("removeFavorite There is no trainer")
       }
       
       const trainer: Trainer = this.trainerService.trainer;
       //filter out pokemon we want to delete
+<<<<<<< Updated upstream
       const newPokemons=trainer.pokemon.filter(pokemon => pokemon !== id)
      
       
       this.trainerService.trainer.pokemon=newPokemons
       console.log(this.trainerService.trainer)
 
+=======
+      const newPokemons=trainer.pokemon.filter(e => e !== id)
+>>>>>>> Stashed changes
 
       const headers = new HttpHeaders({
         'content-type': 'application/json',
@@ -43,7 +48,7 @@ export class RemovePokemonService {
       
       return this.http.patch(`${apiTrainers}/${trainer.id}`,{
         //push pokemons without selected
-        pokemon: [ ...newPokemons]
+        pokemon: [...newPokemons]
       }, {
         headers
       })

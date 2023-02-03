@@ -57,6 +57,7 @@ export class TrainerPageService {
     .subscribe({
       next: (favorites: Trainer[]) => {
         this._favorites = favorites;
+        console.log(this._favorites);
       },
       error: (error: HttpErrorResponse) => {
         this._error = error.message;

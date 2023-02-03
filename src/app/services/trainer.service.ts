@@ -15,7 +15,7 @@ export class TrainerService {
     return this._trainer;
   }
 
-  set trainer(trainer: Trainer | undefined){
+  public set trainer(trainer: Trainer | undefined){
     StorageUtil.storageSave<Trainer>(StorageKeys.Trainer, trainer!);
     this._trainer = trainer;
   }

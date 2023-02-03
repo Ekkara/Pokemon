@@ -1,9 +1,22 @@
 <aside class="absolute top-4 right-4">
-    <button 
+    <ng-container
+    *ngIf="isFavourite; then favourite; else notFavourite"
+    class="material-icons"
+  ></ng-container>
+
+    <ng-template #favourite>
+      <button
+        (click)="onFavoriteClick()"
+        class="border border-slate-300 rounded flex justify-center items-center p-2 text-gray-500">
+        <span class="material-icons"> close </span>
+      </button>
+    </ng-template>
+    
+    <ng-template #notFavourite>   <button
         (click)="onUnFavoriteClick()"
         class="border border-slate-300 rounded flex justify-center items-center p-2 text-gray-500">
-        <span class="material-icons">
-            close
-            </span>
-    </button>
+        <span class="material-icons"> close </span>
+      </button>
+    </ng-template>
+
 </aside>

@@ -10,7 +10,6 @@ export class PokemonService {
   constructor(private readonly http: HttpClient) {}
 
   readonly interval: number = 10;
-  private names: string[] = [];
 
   private _pokemons: Pokemon[] = [];
   public get pokemons(): Pokemon[] {
