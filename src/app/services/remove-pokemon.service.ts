@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { StorageKeys } from '../enum/storage-keys.enum';
 import { Trainer } from '../models/trainer.model';
+import { PokemonService } from './pokemon.service';
 import { TrainerPageService } from './trainer-page.service';
 import { TrainerService } from './trainer.service';
 
@@ -19,7 +20,8 @@ export class RemovePokemonService {
   constructor(
     private readonly http: HttpClient,
     private readonly trainerPageService: TrainerPageService,
-    private readonly trainerService: TrainerService
+    private readonly trainerService: TrainerService,
+    private readonly pokemonService:PokemonService
     ) { }
 
    
@@ -30,16 +32,10 @@ export class RemovePokemonService {
       
       const trainer: Trainer = this.trainerService.trainer;
       //filter out pokemon we want to delete
-<<<<<<< Updated upstream
-      const newPokemons=trainer.pokemon.filter(pokemon => pokemon !== id)
-     
-      
-      this.trainerService.trainer.pokemon=newPokemons
-      console.log(this.trainerService.trainer)
+      const newPokemons = trainer.pokemon.filter(pokemon => pokemon.name !== id)
+      this.trainerService.trainer.pokemon = newPokemons
 
-=======
-      const newPokemons=trainer.pokemon.filter(e => e !== id)
->>>>>>> Stashed changes
+      console.log(this.trainerService.trainer)
 
       const headers = new HttpHeaders({
         'content-type': 'application/json',
@@ -54,6 +50,34 @@ export class RemovePokemonService {
       })
       
     }
-    
 
+    public addFavorite(name:string): Observable<any>{
+      if (!this.trainerService.trainer){
+        throw new Error("removeFavorite There is no trainer")
+      }
+
+      const newPokemon = this.pokemonService.find(name); 
+
+      if(newPokemon){
+      this.pokemonService.addFavouritePokemons(newPokemon);
+      }
+      const trainer: Trainer = this.trainerService.trainer;
+      //filter out pokemon we want to delete
+      
+
+     //this.trainerService.trainer.pokemon = this.pokemonService.favouritePokemons;// trainer.pokemon;
+      console.log(trainer.pokemon + "ad");
+
+      const headers = new HttpHeaders({
+        'content-type': 'application/json',
+        'x-api-key': apiKey
+      })
+
+      return this.http.patch(`${apiTrainers}/${trainer.id}`,{
+        //push pokemons without selected
+        "pokemon": [...this.pokemonService.favouritePokemons]
+      }, {
+        headers
+      })
+    }
 }

@@ -24,5 +24,4 @@ export class TrainerService {
   constructor() {
     this._trainer = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer);
    }
-
 }

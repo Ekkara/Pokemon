@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, switchMap, of } from 'rxjs'
+import { Observable, map, switchMap, of, finalize } from 'rxjs'
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer.model';
+import { PokemonService } from './pokemon.service';
 
 
 const {apiTrainers, apiKey} = environment;
@@ -12,7 +13,8 @@ const {apiTrainers, apiKey} = environment;
 })
 export class LoginService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient,
+    private readonly pokemonService:PokemonService) { }
 
   public login(username: string): Observable<Trainer>{
     return this.checkUsername(username)
@@ -21,6 +23,7 @@ export class LoginService {
           if (trainer === undefined){
             return this.createUser(username);
           }
+          this.pokemonService.initFavourite(trainer.pokemon);
           return of(trainer);
         })
       )
@@ -30,8 +33,8 @@ export class LoginService {
   private checkUsername(username: string): Observable<Trainer | undefined> {
     return this.http.get<Trainer[]>(`${apiTrainers}?username=${username}`)
     .pipe(
-      map((response: Trainer[])=>response.pop())
-    )
+      map((response: Trainer[])=>response.pop()),
+      )
   }
 
   private createUser(username: string): Observable<Trainer>{
