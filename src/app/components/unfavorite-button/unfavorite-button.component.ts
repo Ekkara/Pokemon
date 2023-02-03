@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RemovePokemonService } from 'src/app/services/remove-pokemon.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TrainerPageService } from 'src/app/services/trainer-page.service';
+import { TrainerService } from 'src/app/services/trainer.service';
 @Component({
   selector: 'app-unfavorite-button',
   templateUrl: './unfavorite-button.component.html',
@@ -11,7 +12,12 @@ export class UnfavoriteButtonComponent  implements OnInit{
 
   @Input() pokemonId= "";
 
+  get trainer() {
+    return this.trainerService.trainer;
+  }
+
   constructor(
+    private readonly trainerService: TrainerService,
     private readonly removeService: RemovePokemonService,
     private readonly trainerPageService: TrainerPageService
   ) { }
@@ -31,6 +37,7 @@ export class UnfavoriteButtonComponent  implements OnInit{
           console.log("Error", error.message)
         }
       })
+      
 
     
       
