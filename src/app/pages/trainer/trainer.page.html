@@ -2,7 +2,7 @@
 
 <ul *ngFor="let item of trainer?.pokemon">
     <li class ="mb-4 shadow bg-white rounded relative p-4">
-        <app-unfavorite-button  ></app-unfavorite-button>
+        <app-unfavorite-button [pokemonId]="item" ></app-unfavorite-button>
     <section >
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="favorite.pokemon" />
     </section>
