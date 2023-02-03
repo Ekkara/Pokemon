@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Trainer } from 'src/app/models/trainer.model';
+import { TrainerPageService } from 'src/app/services/trainer-page.service';
 
 @Component({
   selector: 'app-trainer-list',
@@ -9,7 +10,11 @@ import { Trainer } from 'src/app/models/trainer.model';
 
 export class TrainerListComponent {
 
-  @Input() favorites: Trainer[] = [];
+  @Input() favorites= this.trainerPageService.favoriteArray();
+
+  constructor(
+    private readonly trainerPageService: TrainerPageService
+  ) { }
 
 }
 
