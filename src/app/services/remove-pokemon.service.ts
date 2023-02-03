@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { StorageKeys } from '../enum/storage-keys.enum';
 import { Trainer } from '../models/trainer.model';
 import { TrainerPageService } from './trainer-page.service';
 import { TrainerService } from './trainer.service';
@@ -28,20 +29,26 @@ export class RemovePokemonService {
       
       const trainer: Trainer = this.trainerService.trainer;
       //filter out pokemon we want to delete
-      const newPokemons=trainer.pokemon.filter(e => e !== id)
+      const newPokemons=trainer.pokemon.filter(pokemon => pokemon !== id)
      
+      
+      this.trainerService.trainer.pokemon=newPokemons
+      console.log(this.trainerService.trainer)
+
 
       const headers = new HttpHeaders({
         'content-type': 'application/json',
         'x-api-key': apiKey
       })
-
+      
       return this.http.patch(`${apiTrainers}/${trainer.id}`,{
         //push pokemons without selected
         pokemon: [ ...newPokemons]
       }, {
         headers
       })
+      
     }
+    
 
 }

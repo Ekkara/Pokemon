@@ -25,12 +25,14 @@ export class UnfavoriteButtonComponent  implements OnInit{
       .subscribe({
         next: (response: any) => {
           console.log("next ", response)
-          this.trainerPageService.trainerFavorites()
+          
         },
         error: (error: HttpErrorResponse) => {
           console.log("Error", error.message)
         }
       })
+
+    
 
     
       
