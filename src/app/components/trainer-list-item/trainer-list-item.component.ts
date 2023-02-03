@@ -9,11 +9,7 @@ import { TrainerPageService } from 'src/app/services/trainer-page.service';
 })
 export class TrainerListItemComponent {
 
- @Input() favorite:string[]= this.trainerPageService.favoriteArray();
- 
-constructor(
-  private readonly trainerPageService: TrainerPageService
-){ }
+
 }
  
 

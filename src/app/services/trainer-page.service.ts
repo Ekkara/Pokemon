@@ -42,7 +42,7 @@ export class TrainerPageService {
     private readonly http: HttpClient) { }
 
   public trainerFavorites(): void{
-    this.favoriteArray();
+
     if(!this.trainerService.trainer){
       throw new Error("trainerFavorites: there is no user")
     }
@@ -64,18 +64,6 @@ export class TrainerPageService {
     })
   }
 
-  public favoriteArray(){
-    if(!this.trainerService.trainer){
-      throw new Error("favoriteArray: there is no user")
-    
-    }
-    
-    let favoriteArray = this.trainerService.trainer.pokemon.toString().split(",")
-    console.log(favoriteArray)
-    return favoriteArray
-
-      
-    
-  }
+  
 
 }

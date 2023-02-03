@@ -11,9 +11,7 @@ import { TrainerService } from 'src/app/services/trainer.service';
 export class TrainerPage implements OnInit {
 
 
-  get favorites(){
-    return this.trainerPageService.favoriteArray();
-  }
+ 
 
   get loading(): boolean{
     return this.trainerPageService.loading;
@@ -27,9 +25,7 @@ export class TrainerPage implements OnInit {
     return this.trainerService.trainer;
   }
 
-  get favoriteArray(){
-    return this.trainerPageService.favoriteArray();
-  }
+  
 
   constructor(
     private readonly trainerPageService: TrainerPageService,

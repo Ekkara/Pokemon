@@ -27,7 +27,7 @@ export class RemovePokemonService {
       }
       
       const trainer: Trainer = this.trainerService.trainer;
-
+      //filter out pokemon we want to delete
       const newPokemons=trainer.pokemon.filter(e => e !== id)
      
 
@@ -37,6 +37,7 @@ export class RemovePokemonService {
       })
 
       return this.http.patch(`${apiTrainers}/${trainer.id}`,{
+        //push pokemons without selected
         pokemon: [ ...newPokemons]
       }, {
         headers
