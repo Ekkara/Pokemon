@@ -1,3 +1,11 @@
 <main>
 <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+
+<button (click)="ShowMorePokemons()">Load more pokemons!</button>
+
+<ng-template [ngIf] ="onlyFirstSet">
+  <button (click)="ShowLessPokemons()">Hide some pokemons!</button>
+</ng-template>
+
+
 </main>
