@@ -41,7 +41,7 @@ export class TrainerPage implements OnInit {
 
   ngOnInit(): void {
     this.trainerPageService.trainerFavorites();
-    this.trainerService.trainer;
+    this.pokemonService.favouritePokemons;
   }
   
 

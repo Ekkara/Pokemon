@@ -4,7 +4,7 @@ import { finalize, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer.model';
 import { TrainerService } from './trainer.service';
-import { StorageKeys } from '../enum/storage-keys.enum';
+
 
 const{apiFavorites, apiTrainers} = environment
 
@@ -57,13 +57,12 @@ export class TrainerPageService {
     .subscribe({
       next: (favorites: Trainer[]) => {
         this._favorites = favorites;
-        console.log(this._favorites);
+        console.log(this._favorites)
       },
       error: (error: HttpErrorResponse) => {
         this._error = error.message;
       }
     })
-    sessionStorage.setItem(StorageKeys.Trainer, JSON.stringify(this.trainerService.trainer))
   }
 
   
