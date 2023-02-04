@@ -1,6 +1,12 @@
 <li *ngIf="pokemon" class="mb-4 shadow bg-white rounded relative">
   <section class="mb-4 shadow bg-white rounded relative p-4">
-    <app-unfavorite-button [pokemonName]="pokemon.name" ></app-unfavorite-button>
+    <app-unfavorite-button [pokemonName]="pokemon.name"></app-unfavorite-button>
+
+    <img
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
+      alt="favorite.pokemon"
+    />
+
     <span>{{ pokemon.name }} </span>
     <ng-container *ngIf="showDetails; then lessInfo; else moreInfo">
     </ng-container>
