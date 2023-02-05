@@ -16,13 +16,6 @@ export class TrainerPageService {
   private _error: string = "";
   private _loading: boolean = false;
 
- 
-
-  //
-
-  
-  
-
   get error(): string{
     return this._error;
   }
@@ -30,9 +23,6 @@ export class TrainerPageService {
   get loading(): boolean {
     return this._loading;
   }
-  
-  
-
 
   constructor(
     private readonly trainerService: TrainerService, 
