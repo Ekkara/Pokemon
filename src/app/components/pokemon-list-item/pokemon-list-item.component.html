@@ -8,7 +8,7 @@
     />
 
     <span>{{ pokemon.name }} </span>
-    <ng-container *ngIf="showDetails; then lessInfo; else moreInfo">
+    <ng-container *ngIf="showingDetails; then lessInfo; else moreInfo">
     </ng-container>
 
     <ng-template #moreInfo>
@@ -18,7 +18,7 @@
       <button (click)="getDetails()">(hide information)</button>
     </ng-template>
 
-    <ng-template [ngIf]="showDetails">
+    <ng-template [ngIf]="showingDetails">
       <span> id: {{ pokemon.details?.id }} </span>
       <span> height: {{ pokemon.details?.height }} </span>
       <span> weight: {{ pokemon.details?.weight }} </span>

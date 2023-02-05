@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DetailedPokemon, Pokemon } from '../pokemon/Pokemon';
+import { Pokemon } from '../pokemon/Pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 @Component({
   selector: 'app-pokemon-list-item',
@@ -11,10 +11,10 @@ export class PokemonListItemComponent {
 
   @Input() pokemon!:Pokemon;
 
+  //change the state of to display more information or not 
   getDetails():void{
-    this.showDetails = !this.showDetails;
+    this.showingDetails = !this.showingDetails;
     this.pokemonService.fetchDetails(this.pokemon.url, this.pokemon);
   }
-  showDetails:boolean = false;
-
+  showingDetails:boolean = false;
 }
