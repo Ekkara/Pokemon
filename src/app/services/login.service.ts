@@ -4,6 +4,7 @@ import { Observable, map, switchMap, of, finalize } from 'rxjs'
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer.model';
 import { PokemonService } from './pokemon.service';
+import { FavoriteService } from './favorite.service';
 
 
 const {apiTrainers, apiKey} = environment;
@@ -14,7 +15,7 @@ const {apiTrainers, apiKey} = environment;
 export class LoginService {
 
   constructor(private readonly http: HttpClient,
-    private readonly pokemonService:PokemonService) { }
+    private readonly favoriteService:FavoriteService) { }
 
   public login(username: string): Observable<Trainer>{
     return this.checkUsername(username)
@@ -23,7 +24,7 @@ export class LoginService {
           if (trainer === undefined){
             return this.createUser(username);
           }
-          this.pokemonService.initFavourite(trainer.pokemon);
+          this.favoriteService.setFavourite(trainer.pokemon);
           return of(trainer);
         })
       )
@@ -52,9 +53,5 @@ export class LoginService {
     return this.http.post<Trainer>(apiTrainers, trainer, {
       headers
     })
-
-
   }
-
-
 }

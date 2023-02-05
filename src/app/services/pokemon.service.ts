@@ -22,31 +22,6 @@ export class PokemonService {
     return this._pokemons;
   }
 
-  public isDirty:boolean = false;
-  private _favouritePokemons: Pokemon[] = [];
-  public get favouritePokemons(): Pokemon[] {
-    if (!this.trainerService.trainer){
-      throw new Error("removeFavorite There is no trainer")
-    }
-    this._favouritePokemons = this.trainerService.trainer.pokemon
-   
-    return this._favouritePokemons;
-    //return new api request  
-  }
-  
-  public addFavouritePokemons(pokemon: Pokemon){ 
-    this.isDirty = true;
-    this._favouritePokemons.push(pokemon);
-  }
-  public removeFavouritePokemon(pokemonName:string){
-    this.isDirty = true;
-    this._favouritePokemons = this._favouritePokemons.filter((pokemon: Pokemon) => pokemon.name !== pokemonName);
-  }
-  public initFavourite(pokemons:Pokemon[]){
-    this._favouritePokemons = pokemons;
-  }
-
-
   public get onlyFirstSet(): boolean {
     return this._pokemons.length > this.interval;
   }
@@ -122,11 +97,6 @@ export class PokemonService {
     alert("no pokemon with the name " + name +" was found");
     return null;
   }
-
-  public inFavourites(name: string|undefined): boolean{
-    if(name === undefined) return false;
-    return Boolean(this.favouritePokemons.find((pokemon:Pokemon) => pokemon.name === name));
-   }
 }
 
 //base, used to fetch all pokemons quickly
