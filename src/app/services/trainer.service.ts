@@ -22,6 +22,7 @@ export class TrainerService {
 
 
   constructor() {
-    this._trainer = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer);
+    const storedUser: Trainer | undefined = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer);
+    this._trainer = storedUser;
    }
 }

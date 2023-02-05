@@ -1,12 +1,15 @@
 <nav class="bg-red-600 flex justify-between items-center p-4 sticky top-0 w-full z-50">
     <span class="font-bold">Ng Pokemon App</span>
     <ng-container *ngIf="trainer !== undefined">
-        <ul class="flex">
+        <ul class="flex text-xl">
             <li class="px-4">
                 <a routerLink="/pokemoncatalogue">Pokemons</a>
             </li>
-            <li >
+            <li>
                 <a routerLink="/trainer">Trainer</a>
+            </li>
+            <li class="px-4">
+                <app-logout-button></app-logout-button>
             </li>
         </ul>
     </ng-container>
