@@ -1,11 +1,17 @@
 <main>
 <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
-
-<button (click)="ShowMorePokemons()">Load more pokemons!</button>
+<div class="flex">
+<button (click)="ShowMorePokemons()"
+class="border border-slate-300 rounded flex justify-center items-center p-2 text-black bg-slate-200 hover:bg-slate-300 ">
+<span class="material-icons">expand_more</span>
+</button>
 
 <ng-template [ngIf] ="onlyFirstSet">
-  <button (click)="ShowLessPokemons()">Hide some pokemons!</button>
+  <button (click)="ShowLessPokemons()"
+    class="border border-slate-300 rounded flex justify-center items-center p-2 text-black-500 bg-slate-200 hover:bg-slate-300">
+    <span class="material-icons">expand_less</span>
+  </button>
 </ng-template>
-
+</div>
 
 </main>
