@@ -47,7 +47,11 @@ export class PokemonService {
     return this._pokemons.length > this.interval;
   }
 
+  loadingNewPokemons:boolean = false;
+  
   public fetchPokemons(): void {
+    if(this.loadingNewPokemons) return;
+    this.loadingNewPokemons = true;
     this.http
       .get<PokemonResponse>(
         `https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${this._pokemons.length}`
@@ -55,6 +59,9 @@ export class PokemonService {
       .pipe(
         map((response: PokemonResponse) => {
           return response.results;
+        }),
+        finalize(()=>{
+          this.loadingNewPokemons = false;
         })
       )
       .subscribe({
