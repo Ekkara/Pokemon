@@ -13,7 +13,7 @@ export class PokemonListItemComponent {
 
   getDetails():void{
     this.showDetails = !this.showDetails;
-    this.pokemonService.fetchDetails(this.pokemon.url);
+    this.pokemonService.fetchDetails(this.pokemon.url, this.pokemon);
   }
   showDetails:boolean = false;
 

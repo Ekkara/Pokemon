@@ -82,7 +82,7 @@ export class PokemonService {
   private idFromUrl(url:string):number{
     return parseInt(url.split('/').at(-2)!.substring(0, url.length - 4));
   }
-  public fetchDetails(url:string):void{
+  public fetchDetails(url:string, pokemon:Pokemon):void{
     let returnValue:DetailedPokemon | null = null;
     this.http
     .get<DetailedPokemon>(url)
@@ -99,7 +99,7 @@ export class PokemonService {
           weight: details.height,
           base_experience: details.base_experience
         };
-        this._pokemons[returnValue.id - 1].details = returnValue; //plz don't comment on this TODO: define a better index management system :)
+      pokemon.details = returnValue;
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
