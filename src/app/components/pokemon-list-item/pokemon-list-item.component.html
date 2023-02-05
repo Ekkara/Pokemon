@@ -1,7 +1,7 @@
 <li *ngIf="pokemon" class="mb-4 shadow bg-white rounded relative">
   <section class="mb-4 shadow bg-white rounded relative p-4">
-    <app-unfavorite-button [pokemonName]="pokemon.name"></app-unfavorite-button>
-
+    <app-favorite-button [pokemonName]="pokemon.name"></app-favorite-button>
+    
     <img
       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
       alt="favorite.pokemon"

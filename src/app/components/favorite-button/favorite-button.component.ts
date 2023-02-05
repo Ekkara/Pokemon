@@ -8,12 +8,13 @@ import { StorageUtil } from 'src/app/utils/storage.utils';
 import { StorageKeys } from 'src/app/enum/storage-keys.enum';
 import { TrainerService } from 'src/app/services/trainer.service';
 import { Trainer } from 'src/app/models/trainer.model';
+
 @Component({
-  selector: 'app-unfavorite-button',
-  templateUrl: './unfavorite-button.component.html',
-  styleUrls: ['./unfavorite-button.component.css']
+  selector: 'app-favorite-button',
+  templateUrl: './favorite-button.component.html',
+  styleUrls: ['./favorite-button.component.css']
 })
-export class UnfavoriteButtonComponent  implements OnInit{
+export class FavoriteButtonComponent implements OnInit{
 
   @Input() pokemonName= "";
   @Input() pokemon:Pokemon|undefined;
