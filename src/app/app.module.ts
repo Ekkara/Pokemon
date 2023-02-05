@@ -17,6 +17,7 @@ import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon
 //import { TrainerListComponent } from './components/trainer-list/trainer-list.component';
 // import { TrainerListItemComponent } from './components/trainer-list-item/trainer-list-item.component';
 import { UnfavoriteButtonComponent } from './components/unfavorite-button/unfavorite-button.component';
+import { TrainerInfoComponent } from './components/trainer-info/trainer-info.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { UnfavoriteButtonComponent } from './components/unfavorite-button/unfavo
     PokemonListItemComponent,
     //TrainerListComponent,
     // TrainerListItemComponent,
-    UnfavoriteButtonComponent
+    UnfavoriteButtonComponent,
+    TrainerInfoComponent
   ],
   imports: [
     BrowserModule,
