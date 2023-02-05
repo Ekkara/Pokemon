@@ -6,14 +6,13 @@ import { Trainer } from '../models/trainer.model';
 import { TrainerService } from './trainer.service';
 
 
-const{apiFavorites} = environment
+const{apiFavorites, apiTrainers} = environment
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainerPageService {
 
-  private _favorites: Trainer[] = [];
   private _error: string = "";
   private _loading: boolean = false;
 
@@ -22,9 +21,7 @@ export class TrainerPageService {
   //
 
   
-  public get favorites(): Trainer[] {
-    return this._favorites;
-  }
+  
 
   get error(): string{
     return this._error;
@@ -56,15 +53,10 @@ export class TrainerPageService {
     )
     .subscribe({
       next: (favorites: Trainer[]) => {
-        this._favorites = favorites;
-        console.log(this._favorites)
       },
       error: (error: HttpErrorResponse) => {
         this._error = error.message;
       }
     })
   }
-
-  
-
 }

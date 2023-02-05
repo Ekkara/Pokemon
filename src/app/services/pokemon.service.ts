@@ -67,7 +67,7 @@ export class PokemonService {
             let newPokemon: Pokemon = {
               name: p.name,
               url: p.url,
-              id: p.id,
+              id: this.idFromUrl(p.url),
               details:  null
             };
             this._pokemons.push(newPokemon);
@@ -79,7 +79,9 @@ export class PokemonService {
         },
       });
   }
-
+  private idFromUrl(url:string):number{
+    return parseInt(url.split('/').at(-2)!.substring(0, url.length - 4));
+  }
   public fetchDetails(url:string):void{
     let returnValue:DetailedPokemon | null = null;
     this.http
