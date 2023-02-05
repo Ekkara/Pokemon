@@ -25,6 +25,10 @@ export class PokemonService {
   public isDirty:boolean = false;
   private _favouritePokemons: Pokemon[] = [];
   public get favouritePokemons(): Pokemon[] {
+    if (!this.trainerService.trainer){
+      throw new Error("removeFavorite There is no trainer")
+    }
+    this._favouritePokemons = this.trainerService.trainer.pokemon
    
     return this._favouritePokemons;
     //return new api request  
@@ -47,11 +51,7 @@ export class PokemonService {
     return this._pokemons.length > this.interval;
   }
 
-  loadingNewPokemons:boolean = false;
-  
   public fetchPokemons(): void {
-    if(this.loadingNewPokemons) return;
-    this.loadingNewPokemons = true;
     this.http
       .get<PokemonResponse>(
         `https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${this._pokemons.length}`
@@ -59,9 +59,6 @@ export class PokemonService {
       .pipe(
         map((response: PokemonResponse) => {
           return response.results;
-        }),
-        finalize(()=>{
-          this.loadingNewPokemons = false;
         })
       )
       .subscribe({
@@ -70,7 +67,7 @@ export class PokemonService {
             let newPokemon: Pokemon = {
               name: p.name,
               url: p.url,
-              id: this.idFromUrl(p.url),
+              id: p.id,
               details:  null
             };
             this._pokemons.push(newPokemon);
@@ -82,10 +79,6 @@ export class PokemonService {
         },
       });
   }
-  
-  public idFromUrl(url:string):number{
-    return parseInt(url.split('/').at(-2)!.substring(0, url.length - 4));
-   }
 
   public fetchDetails(url:string):void{
     let returnValue:DetailedPokemon | null = null;

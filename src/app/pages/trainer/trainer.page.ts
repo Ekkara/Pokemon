@@ -28,6 +28,7 @@ export class TrainerPage implements OnInit {
   }
 
   get favourites(){
+    //this.trainerPageService.favorites;
     return this.pokemonService.favouritePokemons;
   }
 
@@ -42,6 +43,7 @@ export class TrainerPage implements OnInit {
   ngOnInit(): void {
     this.trainerPageService.trainerFavorites();
     this.pokemonService.favouritePokemons;
+    this.favourites;
   }
   
 

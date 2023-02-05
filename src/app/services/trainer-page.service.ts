@@ -6,7 +6,7 @@ import { Trainer } from '../models/trainer.model';
 import { TrainerService } from './trainer.service';
 
 
-const{apiFavorites, apiTrainers} = environment
+const{apiFavorites} = environment
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class TrainerPageService {
   //
 
   
-  get favorites(): Trainer[] {
+  public get favorites(): Trainer[] {
     return this._favorites;
   }
 
