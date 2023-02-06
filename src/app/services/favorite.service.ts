@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { Pokemon } from '../components/pokemon/Pokemon';
+import { Pokemon } from 'src/app/models/Pokemon';
 import { Trainer } from '../models/trainer.model';
 import { PokemonService } from './pokemon.service';
 import { TrainerService } from './trainer.service';
@@ -53,12 +53,14 @@ export class FavoriteService {
       throw new Error('removeFavorite There is no trainer');
     }
 
+    //add pokemon to favorite on client side
     const newPokemon = this.pokemonService.find(name);
 
     if (newPokemon) {
       this.addFavouritePokemons(newPokemon);
     }
 
+    //add pokemon on the server
     const headers = new HttpHeaders({
       'content-type': 'application/json',
       'x-api-key': apiKey,
@@ -67,7 +69,6 @@ export class FavoriteService {
     return this.http.patch(
       `${apiTrainers}/${this.trainerService.trainer.id}`,
       {
-        //push pokemons without selected
         pokemon: [...this.favouritePokemons],
       },
       {
@@ -81,13 +82,15 @@ export class FavoriteService {
       throw new Error('removeFavorite There is no trainer');
     }
 
+    //remove pokemon on client side by filter it out
     const trainer: Trainer = this.trainerService.trainer;
-    //filter out pokemon we want to delete
+
     const newPokemons = trainer.pokemon.filter(
       (pokemon) => pokemon.name !== id
     );
     this.trainerService.trainer.pokemon = newPokemons;
 
+    //remove the pokemon on the server side
     const headers = new HttpHeaders({
       'content-type': 'application/json',
       'x-api-key': apiKey,

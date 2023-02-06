@@ -1,12 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, throwError } from 'rxjs';
+import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer.model';
 import { TrainerService } from './trainer.service';
 
 
-const{apiFavorites, apiTrainers} = environment
+const{apiFavorites} = environment
 
 @Injectable({
   providedIn: 'root'

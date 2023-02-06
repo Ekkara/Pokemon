@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TrainerPageService } from 'src/app/services/trainer-page.service';
-import { Pokemon } from '../pokemon/Pokemon';
+import { Pokemon } from 'src/app/models/Pokemon';
 import { StorageUtil } from 'src/app/utils/storage.utils';
 import { StorageKeys } from 'src/app/enum/storage-keys.enum';
 import { TrainerService } from 'src/app/services/trainer.service';
@@ -28,6 +28,9 @@ export class FavoriteButtonComponent implements OnInit {
   isFavourite: boolean = false;
   loading: boolean = false;
 
+  //function the html can reach, from here the pokemon will either be added or 
+  //removed from favorites depending on it's current state 
+
   onFavoriteClick() {
     if (this.isFavourite) {
       this.removeFromFavorite();
@@ -42,7 +45,6 @@ export class FavoriteButtonComponent implements OnInit {
     alert('favorite pokemon ' + this.pokemonName);
 
     this.loading = true;
-
     this.favoriteService.addFavorite(this.pokemonName).subscribe({
       next: (response: any) => {
         StorageUtil.storageSave<Trainer>(StorageKeys.Trainer, response);

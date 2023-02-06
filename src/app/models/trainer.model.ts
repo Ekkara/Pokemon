@@ -1,4 +1,4 @@
-import { Pokemon } from "../components/pokemon/Pokemon";
+import { Pokemon } from "./Pokemon";
 export interface Trainer {
     id: number;
     username: string;

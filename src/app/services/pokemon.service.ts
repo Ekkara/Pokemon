@@ -1,19 +1,12 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, map, finalize, Observable } from 'rxjs';
-import { DetailedPokemon, Pokemon } from '../components/pokemon/Pokemon';
-import { environment } from 'src/environments/environment';
-import { TrainerService } from './trainer.service';
-import { Trainer } from '../models/trainer.model';
-
-const {apiTrainers} = environment
-
+import { map } from 'rxjs';
+import { DetailedPokemon, Pokemon } from '../models/Pokemon';
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  constructor(private readonly http: HttpClient,
-    private readonly trainerService:TrainerService) {}
+  constructor(private readonly http: HttpClient) {}
  
   readonly interval: number = 10;
 
@@ -26,6 +19,7 @@ export class PokemonService {
     return this._pokemons.length > this.interval;
   }
 
+  //fetch pokemons from poki api, the amount of "interval" every click
   public fetchPokemons(): void {
     this.http
       .get<PokemonResponse>(
@@ -54,9 +48,12 @@ export class PokemonService {
         },
       });
   }
+  //extract the id from their url
   private idFromUrl(url:string):number{
     return parseInt(url.split('/').at(-2)!.substring(0, url.length - 4));
   }
+
+  //return details to a pokemon which requested it
   public fetchDetails(url:string, pokemon:Pokemon):void{
     let returnValue:DetailedPokemon | null = null;
     this.http
@@ -83,11 +80,14 @@ export class PokemonService {
     });
   }
 
+  //remove interval amount of pokemons from the catalogue
   public hidePokemons(): void {
     for (let i = 0; i < this.interval; i++) {
       this._pokemons.pop();
     }
   }
+
+  //look if pokemon exist within the catalogue list
   public find(name:string):Pokemon|null{
     for(let i:number = 0; i < this._pokemons.length; i++){
       if(this._pokemons[i].name === name){
@@ -99,7 +99,7 @@ export class PokemonService {
   }
 }
 
-//base, used to fetch all pokemons quickly
+//respond from fetching all the pokemons
 interface PokemonResponse {
   results: Pokemon[];
 }
