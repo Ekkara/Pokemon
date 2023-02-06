@@ -1,6 +1,6 @@
 <li *ngIf="pokemon" class="bg-white rounded-3xl mx-11 my-6">
   <section class="mb-4 shadow bg-white rounded-3xl relative p-4 hover:bg-green-100 ">
-    <app-unfavorite-button [pokemonName]="pokemon.name"></app-unfavorite-button>
+    <app-favorite-button [pokemonName]="pokemon.name"></app-favorite-button>
 
     <img class="hover:animate-bounce"
       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
@@ -8,7 +8,7 @@
     />
 
     <span>{{ pokemon.name }} </span>
-    <ng-container *ngIf="showDetails; then lessInfo; else moreInfo">
+    <ng-container *ngIf="showingDetails; then lessInfo; else moreInfo">
     </ng-container>
 
     <ng-template #moreInfo>
@@ -18,7 +18,7 @@
       <button (click)="getDetails()">(hide information)</button>
     </ng-template>
 
-    <ng-template [ngIf]="showDetails">
+    <ng-template [ngIf]="showingDetails">
       <span> id: {{ pokemon.details?.id }} </span>
       <span> height: {{ pokemon.details?.height }} </span>
       <span> weight: {{ pokemon.details?.weight }} </span>

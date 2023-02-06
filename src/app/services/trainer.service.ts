@@ -20,7 +20,6 @@ export class TrainerService {
     this._trainer = trainer;
   }
 
-
   constructor() {
     const storedUser: Trainer | undefined = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer);
     this._trainer = storedUser;

@@ -1,0 +1,25 @@
+<aside class="absolute top-4 right-4">
+  <button
+  class="boeder border-slate-300 rounded flex justify-center items-center p-2 text-red-500"
+  (click)="onFavoriteClick()"
+>
+  <ng-container *ngIf="!loading else spinner">
+    <ng-container
+      *ngIf="isFavourite; then favourite; else notFavourite"
+      class="material-icons"
+    ></ng-container>
+
+    <ng-template #favourite>
+      <span class="material-icons">close</span>
+    </ng-template>
+
+    <ng-template #notFavourite>
+      <span class="material-icons">favorite</span>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #spinner>
+      <span class="material-icons animate-spin">refresh</span>
+  </ng-template>
+</button>
+</aside>

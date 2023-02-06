@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RemovePokemonService } from './remove-pokemon.service';
+import { FavoriteService } from './favorite.service';
 
-describe('RemovePokemonService', () => {
-  let service: RemovePokemonService;
+describe('FavoriteService', () => {
+  let service: FavoriteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RemovePokemonService);
+    service = TestBed.inject(FavoriteService);
   });
 
   it('should be created', () => {

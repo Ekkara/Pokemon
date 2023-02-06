@@ -14,11 +14,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
+<<<<<<< HEAD
 //import { TrainerListComponent } from './components/trainer-list/trainer-list.component';
 // import { TrainerListItemComponent } from './components/trainer-list-item/trainer-list-item.component';
 import { UnfavoriteButtonComponent } from './components/unfavorite-button/unfavorite-button.component';
 import { TrainerInfoComponent } from './components/trainer-info/trainer-info.component';
 
+=======
+import { FavoriteButtonComponent } from './components/favorite-button/favorite-button.component';
+>>>>>>> Refacter-code
 
 @NgModule({
   declarations: [
@@ -31,10 +35,14 @@ import { TrainerInfoComponent } from './components/trainer-info/trainer-info.com
     LogoutButtonComponent,
     PokemonListComponent,
     PokemonListItemComponent,
+<<<<<<< HEAD
     //TrainerListComponent,
     // TrainerListItemComponent,
     UnfavoriteButtonComponent,
     TrainerInfoComponent
+=======
+    FavoriteButtonComponent
+>>>>>>> Refacter-code
   ],
   imports: [
     BrowserModule,
