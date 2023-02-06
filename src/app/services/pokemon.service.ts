@@ -8,7 +8,7 @@ import { DetailedPokemon, Pokemon } from '../models/Pokemon';
 export class PokemonService {
   constructor(private readonly http: HttpClient) {}
  
-  readonly interval: number = 10;
+  readonly interval: number = 2;
 
   private _pokemons: Pokemon[] = [];
   public get pokemons(): Pokemon[] {
@@ -18,12 +18,18 @@ export class PokemonService {
   public get onlyFirstSet(): boolean {
     return this._pokemons.length > this.interval;
   }
-
+ bouderies:number = 5;
   //fetch pokemons from poki api, the amount of "interval" every click
   public fetchPokemons(): void {
+    let thisInterval:number = this.interval;
+    if(this._pokemons.length+ this.interval > this.bouderies){
+      if(this._pokemons.length >= this.bouderies) return;
+      thisInterval = this.bouderies - this._pokemons.length
+    }
+
     this.http
       .get<PokemonResponse>(
-        `https://pokeapi.co/api/v2/pokemon?limit=${this.interval}&offset=${this._pokemons.length}`
+        `https://pokeapi.co/api/v2/pokemon?limit=${thisInterval}&offset=${this._pokemons.length}`
       )
       .pipe(
         map((response: PokemonResponse) => {
@@ -40,6 +46,7 @@ export class PokemonService {
               details:  null
             };
             this._pokemons.push(newPokemon);
+            
           
           });
         },
@@ -82,6 +89,12 @@ export class PokemonService {
 
   //remove interval amount of pokemons from the catalogue
   public hidePokemons(): void {
+    let pops:number = this.interval;
+    if(this._pokemons.length - pops >= pops){
+      if(this._pokemons.length <= pops) return;
+      pops = Math.abs(this._pokemons.length - pops);
+    }
+
     for (let i = 0; i < this.interval; i++) {
       this._pokemons.pop();
     }
