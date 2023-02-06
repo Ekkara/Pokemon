@@ -2,6 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
 
+## setup
+Install node.js, git and angular cli
+
+in terminal type "type in "ng generate environments" in console and replace the content of the generated scripts with the following: 
+
+"
+export const environment = {    
+    production: false,
+    apiTrainers: "https://noroff-assignment-api-production-fa70.up.railway.app/trainers",
+    apiFavorites: "https://noroff-assignment-api-production-fa70.up.railway.app/trainers?id=",
+    apiKey: ""
+};
+
+"
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
