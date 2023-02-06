@@ -41,5 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# ignore all files in the environment folder
-/environment/
+# ignore all files in environment
+environment/
