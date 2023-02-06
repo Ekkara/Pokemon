@@ -10,19 +10,15 @@ export class PokemonListItemComponent {
  constructor(private readonly pokemonService:PokemonService) {}
 
   @Input() pokemon!:Pokemon;
+  isImgLoaded:boolean = false;
+  // doesImageExist():boolean{
+  //   console.log("S");
 
-  doesImageExist():boolean{
-    const http = new XMLHttpRequest();
-    try{
-
-    http.open('HEAD',"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.pokemon.id+".png" , false);
-    http.send();}
-    catch{
-      return false
-    }
-
-    return http.status != 404;
-  }
+  //   const http = new XMLHttpRequest();
+  //   http.open('HEAD',"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+this.pokemon.id+".png" , false);
+  //   http.send();  
+  //   return http.status != 404;
+  // }
 
 
   //change the state of to display more information or not 

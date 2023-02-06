@@ -2,12 +2,11 @@
     <app-favorite-button [pokemonName]="pokemon.name"></app-favorite-button>
     <div>
     <p class="font-bold">{{ pokemon.name }} </p>
-   <ng-template [ngIf]="doesImageExist()">
+   <!-- <ng-template [ngIf]="doesImageExist()"> -->
     <img class="hover:animate-bounce"
-      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
-      alt="favorite.pokemon"
-    />
-  </ng-template>
+      src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
+      alt={{pokemon.name}}.png/>
+      <!-- </ng-template> -->
       </div>
     <ng-container *ngIf="showingDetails; then lessInfo; else moreInfo">
     </ng-container>
