@@ -1,28 +1,28 @@
-<li *ngIf="pokemon" class="bg-white rounded-3xl mx-11 my-6">
-  <section class="mb-4 shadow bg-white rounded-3xl relative p-4 hover:bg-green-100 ">
+<li *ngIf="pokemon" class=" flex mb-4 shadow bg-white rounded-3xl relative p-4 hover:bg-green-100">
     <app-favorite-button [pokemonName]="pokemon.name"></app-favorite-button>
-
+    <div>
+    <p class="font-bold">{{ pokemon.name }} </p>
     <img class="hover:animate-bounce"
       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
       alt="favorite.pokemon"
     />
-
-    <span>{{ pokemon.name }} </span>
+      </div>
     <ng-container *ngIf="showingDetails; then lessInfo; else moreInfo">
     </ng-container>
 
     <ng-template #moreInfo>
-      <button (click)="getDetails()">(more information)</button>
+      <button class="border border-black p-1 mt-16 shadow-md rounded-md bg-green-200" (click)="getDetails()">more information</button>
     </ng-template>
     <ng-template #lessInfo>
-      <button (click)="getDetails()">(hide information)</button>
+      <button  class="border border-black p-1  mt-16 shadow-md rounded-md bg-red-200" (click)="getDetails()">hide information</button>
     </ng-template>
 
     <ng-template [ngIf]="showingDetails">
-      <span> id: {{ pokemon.details?.id }} </span>
-      <span> height: {{ pokemon.details?.height }} </span>
-      <span> weight: {{ pokemon.details?.weight }} </span>
-      <span> base experience: {{ pokemon.details?.base_experience }} </span>
+      <ul class="ml-4">
+      <li> id: {{ pokemon.details?.id }} </li>
+      <li> height: {{ pokemon.details?.height }} </li>
+      <li> weight: {{ pokemon.details?.weight }} </li>
+      <li> base experience: {{ pokemon.details?.base_experience }} </li>
+    </ul>
     </ng-template>
-  </section>
 </li>
